@@ -77,12 +77,11 @@ export function ClockOutCalculator({
       : null;
 
   useEffect(() => {
-    if (autoCalculate) {
-      const interval = setInterval(() => {
-        setStartTime(currentTimeString());
-      }, 60000);
-      return () => clearInterval(interval);
-    }
+    if (!autoCalculate) return;
+    const interval = setInterval(() => {
+      setStartTime(currentTimeString());
+    }, 60000);
+    return () => clearInterval(interval);
   }, [autoCalculate]);
 
   const paidHoursLabel = result
