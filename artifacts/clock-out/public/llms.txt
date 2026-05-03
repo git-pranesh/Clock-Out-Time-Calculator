@@ -1,0 +1,114 @@
+# ClockOut Time Calculator — llms.txt
+
+## About This Tool
+
+ClockOut (clockouttime.com) is a free, browser-based calculator that helps hourly workers, shift employees, and managers calculate clock-out times, total hours worked, overtime pay, and shift end times. All calculations are performed client-side with no data collection.
+
+## Primary Use Case
+
+The core function answers the question: "What time do I get off work?"
+
+Formula: Clock-Out Time = Start Time + Shift Length
+Paid Hours = Shift Length - Unpaid Break Duration
+
+If Clock-Out Time exceeds 24:00 (crosses midnight), it wraps to the next day (shown with "+1 day" label).
+
+## Pages and Tools
+
+### Main Calculator (/)
+- Inputs: Start Time (12h or 24h), Shift Length (4-12h + custom), Break Duration (0-60 min + custom)
+- Outputs: Clock-out time (12h + 24h), paid hours, overtime indicator (>8h = orange, >12h = red), +1 day label for overnight shifts
+
+### Shift Calculators (pre-filled for specific shift lengths)
+- /8-hour-shift-calculator — Pre-fills 8-hour shift; covers standard 9-5, 7-3, rotating shifts
+- /10-hour-shift-calculator — Pre-fills 10-hour shift; covers 4/10 compressed work week schedules
+- /12-hour-shift-calculator — Pre-fills 12-hour shift; for nurses, hospital staff, factory 3rd shift
+- /6-hour-shift-calculator — Pre-fills 6-hour shift; part-time retail, food service, student jobs
+- /4-hour-shift-calculator — Pre-fills 4-hour shift; minimal part-time, student work, event coverage
+- /night-shift-calculator — Defaults to late-evening start (11 PM); handles overnight shifts correctly
+
+### Synonym/Informational Calculator Pages
+- /what-time-do-i-clock-out — Same as main calculator, answers "what time do I get off"
+- /shift-end-time-calculator — Same calculator, framed as "when does my shift end"
+
+### Hours & Timecard Tools
+- /work-hours-calculator — Hours between two times (start + end → duration); handles overnight
+- /timecard-calculator — Weekly timecard: up to 7 days, daily hours, weekly total, overtime summary
+- /how-many-hours-did-i-work — Enter start and end time, see total duration (same as work-hours-calculator)
+- /work-schedule-calculator — General schedule planner with common shift patterns
+
+### Overtime & Pay Calculators
+- /overtime-calculator — Inputs: weekly hours, hourly rate, state → regular/OT/DT pay breakdown
+- /time-and-a-half-calculator — Input: regular rate + OT hours → 1.5x rate and OT pay
+- /double-time-calculator — Input: regular rate + DT hours → 2x rate and DT pay
+
+### "What Time In N Hours" Tools
+- /what-time-is-it-in-4-hours — Auto-detects current time, shows time 4 hours from now
+- /what-time-is-it-in-8-hours — Same, 8 hours forward
+- /what-time-is-it-in-12-hours — Same, 12 hours forward
+
+### Informational
+- /break-time-calculator — State-by-state break requirements (meal breaks and rest breaks)
+- /about — About the tool
+- /privacy-policy — No data collected; all calculations are local
+- /contact — Contact form
+
+## Overtime Rules (US)
+
+### Federal (FLSA)
+- Overtime (1.5x) required for non-exempt employees after 40 hours per workweek
+- Does NOT have daily overtime thresholds
+- Applies to most private-sector hourly employees
+- Exempt employees (salary > $684/week meeting duties test) are excluded
+
+### California (strictest state)
+- Daily overtime (1.5x) after 8 hours in a single workday
+- Double-time (2x) after 12 hours in a single workday
+- Double-time (2x) for all hours on the 7th consecutive workday in a workweek
+- Weekly overtime (1.5x) still applies after 40 hours
+
+### Other States with Daily Overtime
+- Alaska: daily OT after 8 hours
+- Colorado: daily OT after 12 hours (as of 2020 COMPS Order)
+- Nevada: daily OT after 8 hours (for employees earning less than 1.5x minimum wage)
+
+## Who Uses This Tool
+
+- **Hospital nurses** — 12-hour shifts (7 AM-7 PM or 7 PM-7 AM), 3-day work weeks, need to know exact clock-out for handoffs and commute planning
+- **Retail and food service workers** — 4-8 hour shifts, often part-time, checking when they get off for transportation and childcare
+- **Factory and manufacturing workers** — 8, 10, or 12-hour rotating shifts, tracking toward 40-hour overtime threshold
+- **Warehouse and logistics employees** — Extended shifts during peak seasons, monitoring overtime eligibility
+- **Emergency services (police, fire)** — 12-hour shifts, often with union overtime rules
+- **Managers and supervisors** — Scheduling staff, verifying shift coverage, calculating labor costs
+- **Freelancers and contractors** — Billing by the hour, calculating time spent on client work
+- **Students** — Part-time 4-6 hour shifts, balancing work with class schedules
+
+## Calculation Examples
+
+### Basic Clock-Out
+- Start: 9:00 AM, Shift: 8 hours, Break: 30 min unpaid
+- Clock-out: 5:00 PM (9:00 + 8h)
+- Paid hours: 7.5h (8h - 0.5h break)
+
+### Night Shift (Overnight)
+- Start: 11:00 PM, Shift: 8 hours, Break: 30 min
+- Clock-out: 7:00 AM +1 day
+- Paid hours: 7.5h
+
+### Overtime (California)
+- Start: 7:00 AM, Shift: 13 hours
+- Clock-out: 8:00 PM
+- Regular: 8h, Overtime (1.5x): 4h, Double-time (2x): 1h
+- Daily threshold used; no weekly hours needed to trigger daily OT
+
+### Weekly Overtime (Federal)
+- Mon-Fri: 9h each = 45h/week
+- Regular: 40h, Overtime: 5h at 1.5x
+- At $18/hr: Regular $720 + OT $135 = $855
+
+## Data and Privacy
+
+- All calculations run entirely in the user's browser (JavaScript)
+- No time data is sent to any server
+- No user accounts required
+- Free to use with no registration

@@ -1,0 +1,94 @@
+text
+Build a complete production-ready Next.js 14 App Router website called "Clock Out Time Calculator" as a fully static export.
+
+=== CORE TOOL ===
+Main calculator on homepage:
+- Input: Start Time (time picker, 12h or 24h toggle)
+- Input: Shift Length (dropdown: 4h, 4.5h, 5h, 6h, 6.5h, 7h, 7.5h, 8h, 8.5h, 9h, 10h, 10.5h, 11h, 12h, or "Custom")
+- Input: Break Duration (dropdown: No break, 15 min, 20 min, 30 min, 45 min, 60 min, or Custom)
+- Output: Clock-out time in 12h format AND 24h format
+- Output: Total paid hours (shift minus break)
+- Output: Overtime indicator (hours over 8 shown in orange, over 12 in red)
+- Night shift support: if clock-out crosses midnight, shows "+1 day" label
+- "What time do I get off?" phrasing in the UI — this is what users are actually asking
+- Secondary tool below: "Hours Between Two Times" calculator
+- Weekly timecard calculator: enter up to 7 days of start/end times, outputs total hours and overtime
+
+=== PROGRAMMATIC SEO PAGES ===
+Create /data/shiftPages.ts with config for each page:
+
+Generate these static pages:
+- / — main calculator (canonical)
+- /8-hour-shift-calculator — pre-fills 8h shift, content about 8-hour workday
+- /10-hour-shift-calculator — 10h, content about 10-hour shifts, 4-day week
+- /12-hour-shift-calculator — 12h, content for nurses, factory workers, 3-day week
+- /6-hour-shift-calculator — 6h, part-time workers
+- /4-hour-shift-calculator — 4h, part-time, student jobs
+- /night-shift-calculator — 8h default but starts at PM times, content about night shift
+- /what-time-do-i-clock-out — informational page + embedded tool
+- /work-hours-calculator — total hours between two times
+- /timecard-calculator — weekly timecard tool
+- /overtime-calculator — calculates overtime pay
+- /shift-end-time-calculator — synonym page
+- /how-many-hours-did-i-work — reverse calculator
+- /time-and-a-half-calculator — 1.5x overtime rate calculator
+- /double-time-calculator — 2x overtime calculator
+- /break-time-calculator — how long are you legally entitled to
+- /what-time-is-it-in-8-hours — pre-fills "current time + 8 hours"
+- /what-time-is-it-in-4-hours
+- /what-time-is-it-in-12-hours
+- /work-schedule-calculator
+
+Each page must have:
+- Unique H1 (exact keyword)
+- Unique meta title (max 60 chars) and description (max 155 chars)
+- Tool pre-filled with values relevant to that page
+- 350+ words of genuinely unique body content (NOT just the number swapped)
+- 5 FAQs with FAQPage JSON-LD — unique questions per page
+- Internal links to 4 related pages
+- BreadcrumbList JSON-LD
+
+=== SEO & AEO REQUIREMENTS ===
+
+robots.txt — Allow all AI and search crawlers:
+User-agent: *
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+Sitemap: https://[domain]/sitemap.xml
+
+text
+
+sitemap.xml — generated via app/sitemap.ts from data file. All pages. Priority: homepage=1.0, shift calculators=0.9, informational=0.7.
+
+JSON-LD on every page:
+- WebApplication: { name, description, url, applicationCategory: "BusinessApplication", isAccessibleForFree: true, offers: {price: "0"} }
+- FAQPage with 5 unique Q&As per page
+- BreadcrumbList
+- WebSite + SearchAction on homepage
+
+generateMetadata() on every page:
+- title, description, canonical, openGraph (title, description, url, siteName), twitter card, robots: index,follow
+
+Semantic HTML: <html lang="en">, <main>, <header>, <footer>, <nav>, one H1, proper H2/H3 hierarchy.
+
+llms.txt at /public/llms.txt:
+Describe the tool, all page URLs, how to calculate clock out time, what the overtime rules are, who this is for (shift workers, hourly employees, managers, nurses, retail). Make it useful for AI to cite.
+
+Internal linking: every page links to homepage + 4 related calculator pages in a "Related Tools" section.
+
+Performance: static, no JS bundle > 200kb, system fonts preferred.
+
+Pages: /about, /privacy-policy, /contact.
+
+=== TECH STACK ===
+Next.js 14, TypeScript, Tailwind CSS, static export.
+
+=== DESIGN ===
+Clean professional look. Navy + green accent. Large input fields. Result shown in huge text. Works perfectly on mobile — shift workers check clock-out time on their phone.

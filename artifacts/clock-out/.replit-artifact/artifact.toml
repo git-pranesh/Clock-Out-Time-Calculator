@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Clock Out Time Calculator"
+version = "1.0.0"
+id = "artifacts/clock-out"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22780
+
+[services.development]
+run = "pnpm --filter @workspace/clock-out run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/clock-out", "run", "build" ]
+publicDir = "artifacts/clock-out/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22780"
+BASE_PATH = "/"
