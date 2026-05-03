@@ -1,6 +1,7 @@
 import { SEOHead } from "@/components/SEOHead";
 import { ClockOutCalculator } from "@/components/ClockOutCalculator";
 import { RelatedTools } from "@/components/RelatedTools";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Link } from "wouter";
 import type { PageConfig } from "@/data/pageContent";
 
@@ -22,9 +23,18 @@ export default function ShiftPage({ page }: ShiftPageProps) {
           { name: "Home", path: "/" },
           { name: page.h1, path: page.path },
         ]}
+        howToName={`How to use the ${page.h1}`}
+        howToSteps={[
+          { name: "Enter your start time", text: "Type or pick the time you started (or will start) your shift. The calculator accepts both 12-hour (AM/PM) and 24-hour formats." },
+          { name: "Pick your shift length", text: "Select your paid shift length from the dropdown — 4, 6, 8, 10, 12 hours, or any custom value. Half-hour options are also available." },
+          { name: "Add your unpaid break (optional)", text: "Choose any unpaid break that extends your time at work. Common options are 15, 30, 45, or 60 minutes." },
+          { name: "Read your clock-out time", text: "The result panel shows when you'll clock out, in both 12-hour and 24-hour formats. Overnight shifts display a '+1 day' badge automatically." },
+        ]}
       />
 
-      <div className="space-y-8">
+      <div className="space-y-6">
+        <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: page.h1, path: page.path }]} />
+
         <div className="text-center">
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">{page.h1}</h1>
           <p className="text-muted-foreground text-base sm:text-lg">{page.description}</p>

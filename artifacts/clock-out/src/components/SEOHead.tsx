@@ -10,6 +10,11 @@ interface Breadcrumb {
   path: string;
 }
 
+interface HowToStep {
+  name: string;
+  text: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -18,6 +23,8 @@ interface SEOHeadProps {
   breadcrumbs?: Breadcrumb[];
   isHomepage?: boolean;
   noindex?: boolean;
+  howToName?: string;
+  howToSteps?: HowToStep[];
 }
 
 const SITE_ORIGIN = "https://clockouttime.com";
@@ -31,6 +38,8 @@ export function SEOHead({
   breadcrumbs = [],
   isHomepage = false,
   noindex = false,
+  howToName,
+  howToSteps,
 }: SEOHeadProps) {
   const url = `${SITE_ORIGIN}${path}`;
 
@@ -106,6 +115,23 @@ export function SEOHead({
       {breadcrumbSchema && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
+        </script>
+      )}
+
+      {howToName && howToSteps && howToSteps.length > 0 && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": howToName,
+            "description": description,
+            "step": howToSteps.map((s, i) => ({
+              "@type": "HowToStep",
+              "position": i + 1,
+              "name": s.name,
+              "text": s.text,
+            })),
+          })}
         </script>
       )}
 

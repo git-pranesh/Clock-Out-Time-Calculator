@@ -1,7 +1,5 @@
 import { Switch, Route, Router as WouterRouter } from "wouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
-import { Toaster } from "@/components/ui/toaster";
 import { Layout } from "@/components/Layout";
 import Home from "@/pages/Home";
 import ShiftPage from "@/pages/ShiftPage";
@@ -19,8 +17,6 @@ import Privacy from "@/pages/Privacy";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import { getPageByPath } from "@/data/pageContent";
-
-const queryClient = new QueryClient();
 
 function Router() {
   return (
@@ -91,12 +87,9 @@ function Router() {
 function App() {
   return (
     <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </QueryClientProvider>
+      <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+        <Router />
+      </WouterRouter>
     </HelmetProvider>
   );
 }
