@@ -1,11 +1,14 @@
 import { SEOHead } from "@/components/SEOHead";
 import { ClockOutCalculator } from "@/components/ClockOutCalculator";
 import { RelatedTools } from "@/components/RelatedTools";
+import { Link } from "wouter";
 import type { PageConfig } from "@/data/pageContent";
 
 interface ShiftPageProps {
   page: PageConfig;
 }
+
+const LAST_UPDATED = "May 2026";
 
 export default function ShiftPage({ page }: ShiftPageProps) {
   return (
@@ -25,6 +28,10 @@ export default function ShiftPage({ page }: ShiftPageProps) {
         <div className="text-center">
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">{page.h1}</h1>
           <p className="text-muted-foreground text-base sm:text-lg">{page.description}</p>
+          <p className="text-xs text-muted-foreground/70 mt-3" data-testid="page-meta">
+            Reviewed by the ClockOut team · Last updated {LAST_UPDATED} ·{" "}
+            <Link href="/about" className="underline hover:text-accent">About this tool</Link>
+          </p>
         </div>
 
         <ClockOutCalculator
@@ -70,6 +77,23 @@ export default function ShiftPage({ page }: ShiftPageProps) {
         </section>
 
         <RelatedTools pages={page.relatedPages} />
+
+        <section className="bg-muted/30 border border-border rounded-xl p-5 text-xs text-muted-foreground space-y-2" data-testid="sources-disclaimer">
+          <p className="font-semibold text-foreground text-sm">Sources & Disclaimer</p>
+          <p>
+            Overtime thresholds reference the U.S. Fair Labor Standards Act (FLSA) — 40 hours/week
+            at 1.5x — plus state daily-overtime rules (e.g., California Labor Code §510: 8h/day OT,
+            12h/day double-time). State labor laws vary; check your state's labor department for
+            specifics.
+          </p>
+          <p>
+            This calculator is provided for informational and personal scheduling purposes only.
+            It is not legal, tax, or payroll advice. Verify your paid hours and overtime against
+            your employer's official timekeeping system and your state's labor regulations.
+            Questions or corrections?{" "}
+            <Link href="/contact" className="underline hover:text-accent">Contact us</Link>.
+          </p>
+        </section>
       </div>
     </>
   );
