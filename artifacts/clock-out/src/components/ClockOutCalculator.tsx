@@ -69,7 +69,11 @@ export function ClockOutCalculator({
 
   const start = parseStart();
   const shiftMinutes = getShiftMinutes();
-  const breakMinutes = getBreakMinutes();
+  const rawBreakMinutes = getBreakMinutes();
+  // Clamp break to never exceed shift length (an unpaid break can't be longer than the shift itself).
+  const MAX_BREAK_CAP = 240; // 4 hours max for any single break.
+  const breakMinutes = Math.min(Math.max(0, rawBreakMinutes), shiftMinutes, MAX_BREAK_CAP);
+  const breakWasClamped = rawBreakMinutes > breakMinutes;
 
   const result =
     start && shiftMinutes > 0
@@ -188,7 +192,7 @@ export function ClockOutCalculator({
         {/* Shift length */}
         <div>
           <label htmlFor="shift-length" className="block text-sm font-medium text-foreground mb-1.5">
-            Shift Length
+            Shift Length <span className="text-muted-foreground font-normal">(paid hours)</span>
           </label>
           <select
             id="shift-length"
@@ -236,7 +240,7 @@ export function ClockOutCalculator({
         {/* Break */}
         <div>
           <label htmlFor="break-duration" className="block text-sm font-medium text-foreground mb-1.5">
-            Break Duration
+            Break Duration <span className="text-muted-foreground font-normal">(unpaid)</span>
           </label>
           <select
             id="break-duration"
@@ -255,13 +259,18 @@ export function ClockOutCalculator({
             <input
               type="number"
               min="0"
-              max="120"
+              max={Math.min(240, Math.max(0, shiftMinutes))}
               value={customBreakMins}
               onChange={e => setCustomBreakMins(e.target.value)}
               placeholder="Break minutes"
               className="w-full h-10 px-3 mt-2 rounded-lg border border-input bg-background text-foreground text-base focus:outline-none focus:ring-2 focus:ring-ring"
               data-testid="input-custom-break"
             />
+          )}
+          {breakWasClamped && (
+            <p className="mt-1.5 text-xs text-orange-600" data-testid="break-clamp-warning">
+              Break can't be longer than your shift — capped at {minutesToHoursLabel(breakMinutes)}.
+            </p>
           )}
         </div>
       </div>

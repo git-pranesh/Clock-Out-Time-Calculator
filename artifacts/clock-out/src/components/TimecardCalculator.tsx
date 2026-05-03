@@ -18,7 +18,7 @@ const defaultEntries: DayEntry[] = DAYS.slice(0, 5).map((day, i) => ({
   day,
   start: "09:00",
   end: "17:00",
-  breakMins: 30,
+  breakMins: 0,
   enabled: true,
 }));
 
@@ -45,7 +45,7 @@ export function TimecardCalculator() {
     const available = DAYS.find(d => !used.includes(d)) ?? "Day";
     setEntries(prev => [
       ...prev,
-      { id: nextId, day: available, start: "09:00", end: "17:00", breakMins: 30, enabled: true },
+      { id: nextId, day: available, start: "09:00", end: "17:00", breakMins: 0, enabled: true },
     ]);
   };
 

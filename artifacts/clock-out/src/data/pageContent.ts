@@ -46,9 +46,9 @@ The formula is straightforward: clock-out time = start time + shift length. If t
 
 Overtime kicks in at 8 hours of paid work (shown in orange) and at 12 hours (shown in red). These thresholds follow FLSA guidelines and most state overtime rules.`,
     faqs: [
-      { question: "How do I calculate what time I get off work?", answer: "Add your shift length to your start time. For example, if you start at 9:00 AM and work 8 hours, you get off at 5:00 PM. If you have a 30-minute unpaid break, your paid hours are 7.5, but your clock-out time is still 5:00 PM." },
-      { question: "Does my break time change when I clock out?", answer: "No. Your break shifts your clock-out time only if it extends your total time at work. An unpaid break reduces your paid hours but doesn't change your clock-out time — you still leave at start time + shift length." },
-      { question: "What is the 'What time do I get off?' question really asking?", answer: "Most people want to know their clock-out time — when they physically leave the building. This is different from paid hours, which subtract unpaid breaks. This calculator gives you both." },
+      { question: "How do I calculate what time I get off work?", answer: "Add your paid shift length plus any unpaid break to your start time. For example, if you start at 9:00 AM and work 8 paid hours with a 30-minute unpaid lunch, you clock out at 5:30 PM. With no break, the same 8-hour paid shift ends at 5:00 PM." },
+      { question: "Does my break time change when I clock out?", answer: "Yes — an unpaid break extends the total time you spend at work. So an 8-hour paid shift with a 30-minute unpaid lunch means you clock out 8 hours and 30 minutes after you started. Your paid hours remain 8." },
+      { question: "What is the 'What time do I get off?' question really asking?", answer: "Most people want to know their clock-out time — when they physically leave the building. That's start time plus paid hours plus any unpaid break. This calculator gives you both that exit time and your paid hours." },
       { question: "How does overnight / night shift work in this calculator?", answer: "If your shift crosses midnight, the calculator detects this and shows a '+1 day' label. So a shift starting at 10:00 PM for 8 hours would clock out at 6:00 AM +1 day." },
       { question: "When does overtime start?", answer: "For most US workers, overtime starts after 8 hours in a workday (some state laws) or after 40 hours in a workweek (federal FLSA). California also mandates double-time after 12 hours in a day. This calculator flags daily overtime at 8 hours and double-time at 12 hours." },
     ],
@@ -88,11 +88,11 @@ In California, any time worked beyond 8 hours in a single workday is paid at 1.5
 
 Most people commute 30–60 minutes each way. An 8-hour shift at a hospital starting at 7:00 AM means you need to leave home by 6:00–6:30 AM. With a 30-minute unpaid lunch, you'll clock out at exactly 3:00 PM and typically arrive home around 3:45–4:00 PM. Planning this precisely helps with childcare pickups, evening appointments, and meal prep.`,
     faqs: [
-      { question: "If I start at 8 AM and work 8 hours, what time do I get off?", answer: "You clock out at 4:00 PM. If you have a 30-minute unpaid lunch, your paid hours are 7.5, but your departure time is still 4:00 PM since the break is during your shift." },
+      { question: "If I start at 8 AM and work 8 hours, what time do I get off?", answer: "With no break, you clock out at 4:00 PM. With a 30-minute unpaid lunch, you clock out at 4:30 PM — your paid hours stay at 8 but you're at work for 8.5 hours total." },
       { question: "Does a 15-minute break count against my 8 hours?", answer: "Usually not. Federal law and most state laws require employers to pay for short rest breaks (under 20 minutes). A 15-minute break is typically paid, so it doesn't reduce your total paid hours." },
       { question: "Am I entitled to overtime if I work more than 8 hours in a day?", answer: "It depends on your state. California, Colorado, Nevada, and a few others require daily overtime after 8 hours. Most states follow federal FLSA, which only requires overtime after 40 hours in a workweek." },
       { question: "What's a typical 8-hour shift schedule in healthcare?", answer: "Hospitals commonly run 7-3, 3-11, and 11-7 shifts (day, evening, night). Each is exactly 8 hours. Nursing staff on 8-hour shifts often get 1-2 paid 15-minute breaks and an unpaid 30-minute meal break." },
-      { question: "How many paid hours is an 8-hour shift with a 30-minute lunch?", answer: "7.5 paid hours. Your shift is 8 hours long, but the 30-minute unpaid lunch is deducted from your pay. You still clock out 8 hours after you started." },
+      { question: "How many paid hours is an 8-hour shift with a 30-minute lunch?", answer: "8 paid hours. The 30-minute unpaid lunch extends your time at work to 8.5 hours but doesn't reduce your pay — your shift length is the paid portion." },
     ],
     relatedPages: [
       { path: "/", label: "Main Calculator" },
@@ -131,11 +131,11 @@ If you work in California, Alaska, or another state with daily overtime laws, yo
 
 Most states require a 30-minute unpaid meal break for shifts longer than 8 hours. Some require an additional meal break for shifts exceeding 10 hours. Check your state's labor code — California, for example, requires a second 30-minute meal break if you work more than 10 hours in a single shift.`,
     faqs: [
-      { question: "What time do I get off if I start at 6 AM and work 10 hours?", answer: "You clock out at 4:00 PM. If you have a 30-minute unpaid break, your paid hours are 9.5, but your departure time is still 4:00 PM." },
+      { question: "What time do I get off if I start at 6 AM and work 10 hours?", answer: "With no break, you clock out at 4:00 PM. With a 30-minute unpaid meal break, you clock out at 4:30 PM — paid hours remain 10, total time at work is 10.5 hours." },
       { question: "Is a 4-day, 10-hour schedule considered overtime?", answer: "Not at the federal level — 4 x 10 = 40 hours, which is exactly the federal overtime threshold. However, in states with daily overtime laws (like California), hours 9 and 10 each day are paid at 1.5x." },
       { question: "Do I get two breaks during a 10-hour shift?", answer: "Federal law doesn't mandate meal breaks, but most states require at least one 30-minute break for shifts over 8 hours. Some states (including California) require a second meal break for shifts over 10 hours." },
       { question: "What industries use 10-hour shifts most often?", answer: "Construction, manufacturing, logistics, law enforcement, emergency services, and some healthcare facilities. The 4/10 schedule is popular because it gives employees a consistent three-day weekend." },
-      { question: "How many paid hours is a 10-hour shift with a 30-minute lunch?", answer: "9.5 paid hours. The 30-minute unpaid meal break is deducted from your pay but not from your clock-out time — you still leave 10 hours after you arrived." },
+      { question: "How many paid hours is a 10-hour shift with a 30-minute lunch?", answer: "10 paid hours. The 30-minute unpaid meal break extends your total time at work to 10.5 hours but doesn't reduce your pay." },
     ],
     relatedPages: [
       { path: "/8-hour-shift-calculator", label: "8-Hour Shift" },
@@ -170,7 +170,7 @@ Three 12-hour shifts add up to 36 hours. For nurses, this typically counts as fu
 
 A "7 to 7" shift in healthcare is 7:00 AM to 7:00 PM (day shift) or 7:00 PM to 7:00 AM (night shift). These are 12-hour shifts. With a 30-minute unpaid meal break, paid hours are 11.5. Most states require at least two paid 15-minute rest breaks during a 12-hour shift, which are included in the 12 hours and don't reduce pay.`,
     faqs: [
-      { question: "What time do I get off a 12-hour shift starting at 7 AM?", answer: "You clock out at 7:00 PM. If you have a 30-minute unpaid break, your paid hours are 11.5, but your departure time remains 7:00 PM." },
+      { question: "What time do I get off a 12-hour shift starting at 7 AM?", answer: "With no break, you clock out at 7:00 PM. With a 30-minute unpaid meal break, you clock out at 7:30 PM — paid hours stay at 12, total time at work is 12.5 hours." },
       { question: "How many days per week do nurses typically work 12-hour shifts?", answer: "Most hospital nurses work three 12-hour shifts per week, totaling 36 hours. Many hospitals classify this as full-time for benefits purposes. Some nurses work four shifts to get 48 hours, earning significant overtime." },
       { question: "Does double-time apply to 12-hour shifts?", answer: "In California, any hours worked beyond 12 in a single workday are paid at double time (2x). Other states don't have this daily double-time rule but may require it after 60 hours in a workweek." },
       { question: "Is it legal to work a 12-hour shift without a break?", answer: "In most states, shifts over 8-10 hours require at least one 30-minute meal break. Some states require two meal breaks for shifts over 12 hours. Check your state's labor laws — working through a required break may entitle you to penalty pay." },
@@ -208,7 +208,7 @@ Federal law doesn't mandate breaks, but many states require a 30-minute meal bre
 
 Part-time workers on 6-hour shifts often lack access to benefits like health insurance, paid time off, and retirement plans. Understanding your exact paid hours is critical if you're working multiple part-time jobs or tracking hours for benefits thresholds. Some companies offer benefits after 30 hours per week — three 6-hour shifts gets you to 18 hours, requiring additional days to qualify.`,
     faqs: [
-      { question: "What time do I get off a 6-hour shift starting at 10 AM?", answer: "You clock out at 4:00 PM. If your employer offers a 15-minute paid break, your paid hours remain 6.0. If there's a 30-minute unpaid meal break, paid hours drop to 5.5." },
+      { question: "What time do I get off a 6-hour shift starting at 10 AM?", answer: "With no break, you clock out at 4:00 PM. With a 30-minute unpaid meal break, you clock out at 4:30 PM — your paid hours remain 6, total time at work is 6.5 hours." },
       { question: "Do I get a break during a 6-hour shift?", answer: "It depends on your state. California allows waiving the meal break for shifts up to 6 hours if both you and your employer agree. Most states require a break for shifts over 5 or 6 hours. Check your state's labor laws." },
       { question: "Is overtime possible on a 6-hour shift?", answer: "Rarely for a single shift, since daily overtime thresholds (8 hours) aren't reached. But if you work multiple 6-hour shifts in a week and exceed 40 total hours, you'd earn overtime under federal law." },
       { question: "What industries most commonly use 6-hour shifts?", answer: "Retail, food service, healthcare (aides and support staff), administrative support, and education (classroom aides, after-school programs). Six-hour shifts are common wherever employers need coverage without full-time commitments." },

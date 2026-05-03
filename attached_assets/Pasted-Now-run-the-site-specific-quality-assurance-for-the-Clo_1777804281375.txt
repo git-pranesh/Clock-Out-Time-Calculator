@@ -1,0 +1,50 @@
+Now run the site-specific quality assurance for the Clock Out Time Calculator.
+
+=== CALCULATION ACCURACY TESTS ===
+
+Run every single one of these test cases. If any output is wrong, fix the calculation logic:
+
+1. Start: 9:00 AM, Shift: 8 hours, Break: 30 min → Expected clock-out: 5:30 PM ✅
+2. Start: 9:00 AM, Shift: 8 hours, Break: 0 min → Expected clock-out: 5:00 PM ✅
+3. Start: 6:00 AM, Shift: 12 hours, Break: 30 min → Expected clock-out: 6:30 PM ✅
+4. Start: 11:00 PM, Shift: 8 hours, Break: 30 min → Expected clock-out: 7:30 AM (+1 day) ✅
+5. Start: 11:30 PM, Shift: 8 hours, Break: 0 min → Expected clock-out: 7:30 AM (+1 day) ✅
+6. Start: 10:00 AM, Shift: 6.5 hours, Break: 45 min → Expected clock-out: 5:15 PM ✅
+7. Start: 7:45 AM, Shift: 8 hours, Break: 30 min → Expected clock-out: 4:15 PM ✅
+8. Start: 12:00 PM, Shift: 4 hours, Break: 15 min → Expected clock-out: 4:15 PM ✅
+9. Start: 3:30 PM, Shift: 10 hours, Break: 60 min → Expected clock-out: 2:30 AM (+1 day) ✅
+10. Start: 8:15 AM, Shift: 7.5 hours, Break: 30 min → Expected clock-out: 4:15 PM ✅
+
+OVERTIME TESTS:
+11. 9 hours shift → CPI should show 1 hour overtime in orange
+12. 13 hours shift → should show 5 hours overtime in red (over 12)
+13. 8 hours exact → no overtime indicator shown
+
+NIGHT SHIFT TESTS:
+14. Start at 10:00 PM, 8h shift → result must show "+1 day" label on clock-out time
+15. Does clock-out correctly show AM for post-midnight times?
+
+WEEKLY TIMECARD TESTS (if implemented):
+16. Monday 9am-5pm (8h), Tuesday 9am-5pm (8h), Wednesday 9am-5pm (8h), Thursday 9am-5pm (8h), Friday 9am-5pm (8h) → Total: 40h, Overtime: 0h
+17. Same + Saturday 9am-2pm (5h) → Total: 45h, Overtime: 5h
+
+HOURS BETWEEN TIMES:
+18. 9:00 AM to 5:30 PM → 8 hours 30 minutes ✅
+19. 11:00 PM to 7:30 AM → 8 hours 30 minutes ✅
+20. 12:00 PM to 12:00 AM → 12 hours ✅
+
+PROGRAMMATIC PAGES:
+21. Load /8-hour-shift-calculator. Is the shift dropdown pre-filled to 8 hours?
+22. Load /12-hour-shift-calculator. Is the shift dropdown pre-filled to 12 hours?
+23. Load /night-shift-calculator. Is start time pre-filled to a PM time (e.g., 10:00 PM)?
+24. Do all 20 pages have unique H1 tags? Check for copy-paste.
+25. Does every page have a working calculator (not just a blank form)?
+
+EDGE CASES:
+26. Enter start time as 12:00 AM (midnight). Does it calculate correctly?
+27. Enter start time as 12:00 PM (noon). Does it calculate correctly?
+28. Enter 0-minute break. Is it handled without division errors?
+29. Enter a custom break of 999 minutes. Is there validation (break can't be longer than shift)?
+30. Change time format between 12h and 24h. Does the output update correctly?
+
+VERIFY AND FIX ALL FAILURES.

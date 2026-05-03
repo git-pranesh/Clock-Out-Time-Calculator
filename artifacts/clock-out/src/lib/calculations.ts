@@ -40,29 +40,32 @@ export function formatHour24(hour: number, minute: number): string {
 export function calculateClockOut(
   startHour: number,
   startMinute: number,
-  shiftMinutes: number,
+  paidMinutes: number,
   breakMinutes: number
 ): ClockOutResult {
-  const totalShiftMinutes = shiftMinutes;
-  const paidTotalMinutes = totalShiftMinutes - breakMinutes;
-  const paidHours = Math.floor(paidTotalMinutes / 60);
-  const paidMins = paidTotalMinutes % 60;
+  // Semantics: `paidMinutes` is the number of hours the worker is actually paid for
+  // (i.e., the "shift length" they think of). Total time at work = paid + unpaid break.
+  // Clock-out time = start + paid + break.
+  const safeBreak = Math.max(0, breakMinutes);
+  const totalAtWorkMinutes = paidMinutes + safeBreak;
+  const paidHours = Math.floor(paidMinutes / 60);
+  const paidMins = paidMinutes % 60;
 
   const startTotalMinutes = startHour * 60 + startMinute;
-  const endTotalMinutes = startTotalMinutes + totalShiftMinutes;
+  const endTotalMinutes = startTotalMinutes + totalAtWorkMinutes;
   const crossesMidnight = endTotalMinutes >= 1440;
 
-  const clockOutTotal = endTotalMinutes % 1440;
+  const clockOutTotal = ((endTotalMinutes % 1440) + 1440) % 1440;
   const clockOutHour = Math.floor(clockOutTotal / 60);
   const clockOutMinute = clockOutTotal % 60;
 
   const overtimeThresh = 8 * 60;
   const doubleTimeThresh = 12 * 60;
-  const overtimeMinutes = paidTotalMinutes > overtimeThresh
-    ? Math.min(paidTotalMinutes - overtimeThresh, doubleTimeThresh - overtimeThresh)
+  const overtimeMinutes = paidMinutes > overtimeThresh
+    ? Math.min(paidMinutes - overtimeThresh, doubleTimeThresh - overtimeThresh)
     : 0;
-  const doubleTimeMinutes = paidTotalMinutes > doubleTimeThresh
-    ? paidTotalMinutes - doubleTimeThresh
+  const doubleTimeMinutes = paidMinutes > doubleTimeThresh
+    ? paidMinutes - doubleTimeThresh
     : 0;
 
   return {
